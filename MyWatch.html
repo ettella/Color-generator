@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>
+		MyWatch
+	</title>
+
+</head>
+
+<style type="text/css">
+
+body {display: flex; justify-content: center;
+	font: 'Raleway', sans-serif;
+    color: rgba(0,0,0,.5);
+    flex-direction: column;
+    text-transform: uppercase;
+    text-align: center;
+    top: 15%;
+	background: linear-gradient(to right, red , yellow); /* Standard syntax */
+	flex-wrap: wrap;
+}
+
+h1 {
+    font: 600 3.5em 'Raleway', sans-serif;
+    color: rgba(0,0,0,.5);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    width: 100%;
+}
+
+h3 {
+	font: 900 1em 'Raleway', sans-serif;
+    color: rgba(0,0,0,.5);
+    text-align: center;
+    text-transform: none;
+    letter-spacing: 0.01em;
+}
+
+
+#txt {display: flex; justify-content: center; align-content: center; border: 10px solid white; width: 500px ; height: 80px ; text-align: center; 
+	font: 600 3.5em 'Raleway', sans-serif;
+    color: rgba(0,0,0,.5);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: .5em;
+	padding-top: 20px; margin: auto; margin-top: 150px; margin-bottom: 100px;}
+
+#txt:hover {background: white; cursor: pointer;}
+input:hover {cursor: help;}
+
+	
+
+</style>
+
+<body onload="startTime()" id="gradient">
+
+<div id="txt"></div>
+
+	<div class="center">
+	<h1> Mood coloring - for the good day :) </h1>
+	<input class="color1" type="color" name="color1" value="#00ff00">
+	<input class="color2" type="color" name="color2" value="#ff0000">
+	<h2>Your mood in numbers:</h2>
+	<h3></h3>
+	</div>
+
+</body>
+
+<script type="text/javascript">
+
+
+function startTime()
+		{
+		var today=new Date();
+		var h=today.getHours();
+		var m=today.getMinutes();
+		var s=today.getSeconds();
+		// add a zero in front of numbers<10
+		m=checkTime(m);
+		s=checkTime(s);
+		document.getElementById('txt').innerHTML=h+":"+m+":"+s;
+		t=setTimeout('startTime()',500);
+		}
+			function checkTime(i)
+			{
+			if (i<10)
+			{
+			i="0" + i;
+			}
+			return i;
+			}
+
+
+/*var d = new Date();
+var time = d.getHours();
+if (time < 10){document.write("<h1>Good Morning!</h1>") else (time > 10) document.write("<h1>Have a good day!</h1>")}
+*/
+	
+
+var css = document.querySelector("h3");
+var color1 = document.querySelector(".color1");
+var color2 = document.querySelector(".color2");
+var body = document.getElementById("gradient");
+
+function setGradient() {
+	body.style.background = 
+	"linear-gradient(to right, " 
+	+ color1.value 
+	+ ", " 
+	+ color2.value 
+	+ ")";
+
+	css.textContent = body.style.background + ";";
+}
+
+color1.addEventListener("input", setGradient);
+
+color2.addEventListener("input", setGradient);
+
+</script>
+</html>
